@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seni Çok Seviyorum ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #6d6875;
+            margin-bottom: 25px;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .counter-box {
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.05);
+        }
+
+        .counter-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #d90429;
+        }
+
+        .counter-box label {
+            font-size: 0.85rem;
+            color: #8d99ae;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .message-box {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #e63946;
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn:hover {
+            background: #d90429;
+            transform: translateY(-2px);
+        }
+
+        #reason {
+            margin-top: 15px;
+            font-style: italic;
+            color: #6d6875;
+            min-height: 40px;
+        }
+
+        /* Uçuşan Kalpler */
+        .heart {
+            position: absolute;
+            color: rgba(230, 57, 70, 0.6);
+            font-size: 20px;
+            animation: fly 5s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Planda Uçuşan Kalpler -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+
+    <div class="container">
+        <h1>Birlikteksiz Geçen Her An...</h1>
+        <p class="subtitle">10 Ekim'den beri kalbim seninle atıyor ❤️</p>
+
+        <!-- Canlı Sayaç -->
+        <div class="counter-grid">
+            <div class="counter-box">
+                <span id="days">0</span>
+                <label>Gün</label>
+            </div>
+            <div class="counter-box">
+                <span id="hours">0</span>
+                <label>Saat</label>
+            </div>
+            <div class="counter-box">
+                <span id="minutes">0</span>
+                <label>Dakika</label>
+            </div>
+            <div class="counter-box">
+                <span id="seconds">0</span>
+                <label>Saniye</label>
+            </div>
+        </div>
+
+        <!-- Romantik Not -->
+        <div class="message-box">
+            <b>Sevgilim,</b><br>
+            Hayatımın en güzel hikayesi seninle başladı. İyi ki varsın, iyi ki benimlesin. Seni herşeyden çok seviyorum...
+        </div>
+
+        <!-- Sürpriz Buton -->
+        <button class="btn" onclick="showReason()">Neden Seni Seviyorum? 💖</button>
+        <p id="reason"></p>
+    </div>
+
+    <script>
+        // 10 Ekim 2026 Saat 00:00:00 (Geçen ayın 10'u)
+        const startDate = new Date("2026-10-10T00:00:00");
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Rastgele Sevgi Nedenleri
+        const reasons = [
+            "Gülüşünle bütün günümü güzelleştirdiğin için...",
+            "Beni en zor anımda bile mutlu etmeyi bildiğin için...",
+            "Yanındayken zamanın nasıl geçtiğini unutturduğun için...",
+            "Dünyadaki en tatlı ve en düşünceli sevgili olduğun için...",
+            "Sadece varlığınla bile içimi huzurla doldurduğun için...",
+            "Seni her geçen gün dünkünden daha çok sevdiğim için..."
+        ];
+
+        function showReason() {
+            const randomIndex = Math.floor(Math.random() * reasons.length);
+            document.getElementById("reason").innerText = "✨ " + reasons[randomIndex];
+        }
+    </script>
+</body>
+</html>
